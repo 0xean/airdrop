@@ -18,7 +18,7 @@ CSV_FILES=(
 )
 
 # Corresponding distribution amounts for each file
-DISTRIBUTION_AMOUNTS=(3781250 3781250 3000000 1890625 1890625)
+DISTRIBUTION_AMOUNTS=(4083750 4083750 3605000 2193125 2193125)
 
 # Corresponding distribution types for each file (either "even" or "weighted")
 DISTRIBUTION_TYPES=("weighted" "weighted" "even" "even" "even")
