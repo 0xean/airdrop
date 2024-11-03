@@ -24,3 +24,4 @@ cmd/arkeodrop/__debug_bin
 infra/node-data/
 
 csv/airdrop_GAIA_delegates.csv
+scripts/node_modules/*
