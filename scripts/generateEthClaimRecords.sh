@@ -97,8 +97,14 @@ awk -F',' -v total_weighted_sum="$total_weighted_sum" -v total_distribution="$TO
         for (addr in weighted_sum) {
             proportion = weighted_sum[addr] / total_weighted_sum
             distributed_amount = proportion * total_distribution
-            if (distributed_amount > 0) { # Only include non-zero distributed amounts
-                printf "%s,%.2f\n", addr, distributed_amount >> "'"$TEMP_WITH_DISTRIBUTION"'"
+
+            # Round distributed_amount to two decimal places
+            rounded_amount = sprintf("%.2f", distributed_amount)
+
+            # Only include non-zero rounded distributed amounts
+            if (rounded_amount != "0.00") {
+                gsub(/"/, "", addr)  # Remove any quotation marks from address
+                printf "%s,%.2f\n", addr, rounded_amount >> "'"$TEMP_WITH_DISTRIBUTION"'"
             }
         }
     }
