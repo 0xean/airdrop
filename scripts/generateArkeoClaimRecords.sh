@@ -11,13 +11,10 @@ echo "address,distributed_amount" >"$TEMP_FILE"
 
 # Convert each address to Bech32 format with "arkeo" prefix and aggregate the distributed amount
 awk -F',' 'NR > 1 { print $1 "," $3 }' "$INPUT_FILE" | while IFS=, read -r original_address distributed_amount; do
-    # Trim whitespace from the address
     original_address=$(echo "$original_address" | xargs)
 
-    # Convert using the Node.js script
     arkeo_address=$(node convertToBech32.js "$original_address")
 
-    # Check if the conversion succeeded
     if [ -n "$arkeo_address" ]; then
         echo "$arkeo_address,$distributed_amount" >>"$TEMP_FILE"
     else
@@ -34,7 +31,9 @@ awk -F',' '
     }
     END {
         for (addr in distributed_sum) {
-            printf "%s,%.2f\n", addr, distributed_sum[addr]
+            if (distributed_sum[addr] > 0) {
+                printf "%s,%.2f\n", addr, distributed_sum[addr]
+            } 
         }
     }
 ' "$TEMP_FILE" >"$SORTED_TEMP_FILE"

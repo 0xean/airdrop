@@ -97,14 +97,16 @@ awk -F',' -v total_weighted_sum="$total_weighted_sum" -v total_distribution="$TO
         for (addr in weighted_sum) {
             proportion = weighted_sum[addr] / total_weighted_sum
             distributed_amount = proportion * total_distribution
-            printf "%s,%.18f,%.2f\n", addr, weighted_sum[addr], distributed_amount >> "'"$TEMP_WITH_DISTRIBUTION"'"
+            if (distributed_amount > 0) { # Only include non-zero distributed amounts
+                printf "%s,%.2f\n", addr, distributed_amount >> "'"$TEMP_WITH_DISTRIBUTION"'"
+            }
         }
     }
 ' "$TEMP_FILE"
 
 # Sort by distributed_amount in descending order and add header to final output
-echo "address,time_weighted_average,distributed_amount" > "$OUTPUT_FILE"
-sort -t, -k2,2nr -k3,3nr "$TEMP_WITH_DISTRIBUTION" >> "$OUTPUT_FILE"
+echo "address,distributed_amount" > "$OUTPUT_FILE"
+sort -t, -k2,2nr "$TEMP_WITH_DISTRIBUTION" >> "$OUTPUT_FILE"
 
 # Clean up temporary files
 rm "$TEMP_FILE" "$TEMP_WITH_DISTRIBUTION"
