@@ -21,7 +21,7 @@ insert into tokens(address, name, symbol, decimals, chain, genesis_block, height
   -- foxy
 insert into tokens(address, name, symbol, decimals, chain, genesis_block, height) values ('0xdc49108ce5c57bc3408c3a5e95f3d864ec386ed3', 'FOX Yieldy', 'FOXy', 18, 'ETH', 14476930, 0);
   -- fox <> ETH LP
-insert into tokens(address, name, symbol, decimals, chain, genesis_block, height) values ('0x470e8de2ebaef52014a47cb5e6af86884947f08c', 'UNI-V2', 'Uniswap V2', 18, 'ETH', 10104463, 0);
+insert into tokens(address, name, symbol, decimals, chain, genesis_block, height) values ('0x470e8de2ebaef52014a47cb5e6af86884947f08c', 'Uniswap V2', 'UNI-V2', 18, 'ETH', 10104463, 0);
   -- tfox
 insert into tokens(address, name, symbol, decimals, chain, genesis_block, height) values ('0x808d3e6b23516967ceae4f17a5f9038383ed5311', 'TokemaktFOX', 'tFOX', 18, 'ETH', 13690577, 0);
   -- scfox
@@ -29,7 +29,7 @@ insert into tokens(address, name, symbol, decimals, chain, genesis_block, height
 
 -- gnosis
   -- fox
-insert into tokens(address, name, symbol,decimals,  chain, genesis_block, height) values ('0x21a42669643f45bc0e086b8fc2ed70c23d67509d', 'FOX on xDai', 'FOX', 18, 'GNO', 16988521, 0);
+insert into tokens(address, name, symbol,decimals,  chain, genesis_block, height) values ('0x21a42669643f45bc0e086b8fc2ed70c23d67509d', 'FOX on GNO', 'FOX', 18, 'GNO', 16988521, 0);
 
 -- Polygon
   -- fox
@@ -53,7 +53,7 @@ create table staking
 
 -- mainnet 
   -- LP stakingrewards
-insert into staking(address, contract_name, chain, genesis_block, height) values ('0xc14eaa8284feff79edc118e06cadbf3813a7e555', 'stakingrewards', 'ETH', 15941059, 0);
+insert into staking(address, contract_name, chain, genesis_block, height) values ('0xc14eaa8284feff79edc118e06cadbf3813a7e555', 'stakingrewardsv5', 'ETH', 15941059, 0);
 
 ---- create above / drop below ----
 -- undo --

@@ -1,8 +1,0 @@
-FROM ubuntu:kinetic
-
-WORKDIR /root
-
-RUN apt update && apt upgrade -y
-RUN apt install -y redis postgresql-client curl wget jq htop vim
-
-COPY ./scripts ./scripts

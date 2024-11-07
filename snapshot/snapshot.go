@@ -4,13 +4,12 @@ import (
 	"fmt"
 
 	"github.com/ArkeoNetwork/airdrop/pkg/db"
+	"github.com/ArkeoNetwork/common/utils"
 	"github.com/ArkeoNetwork/directory/pkg/logging"
 )
 
 type SnapshotIndexerAppParams struct {
-	SnapshotStart uint64
-	SnapshotEnd   uint64
-	db.DBConfig
+	utils.DBConfig
 }
 
 type SnapshotIndexerApp struct {
@@ -38,4 +37,3 @@ func (app *SnapshotIndexerApp) Start() {
 		panic(fmt.Sprintf("error inserting snapshot proposal voters: %+v", err))
 	}
 }
-

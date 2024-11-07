@@ -64,6 +64,7 @@ func (d *AirdropDB) UpsertStakingEventBatch(stakingEvents []*types.StakingEvent)
 
 	batch := &pgx.Batch{}
 	for _, stakingEvent := range stakingEvents {
+		log.Print("EVENT: ", stakingEvent)
 		batch.Queue(
 			sqlUpsertStakingEvent,
 			stakingEvent.TxHash,

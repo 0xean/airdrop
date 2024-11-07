@@ -1,0 +1,27 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  namespace: foundation
+  name: airdroputils
+spec:
+  schedule: "1 17 * * *" # 5:01pm UTC
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: airdroputils
+              image: ghcr.io/arkeonetwork/airdroputils:latest
+              imagePullPolicy: Always
+              volumeMounts:
+                - name: data
+                  mountPath: /root/data
+              command:
+                - /bin/bash
+                - -c
+                - /root/scripts/capture-juno.sh
+          restartPolicy: OnFailure
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: airdroputils-data-pvc

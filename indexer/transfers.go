@@ -2,6 +2,7 @@ package indexer
 
 import (
 	"context"
+	"time"
 
 	"github.com/ArkeoNetwork/airdrop/contracts/erc20"
 	"github.com/ArkeoNetwork/airdrop/pkg/types"
@@ -15,9 +16,9 @@ import (
 
 func (app *IndexerApp) IndexTransfers() error {
 	// find all chains we care about
-	chains, err := app.db.FindAllChains()
+	chains, err := app.db.FindETHChains()
 	if err != nil {
-		return errors.Wrap(err, "unbale to find chains for tokens")
+		return errors.Wrap(err, "unable to find chains for tokens")
 	}
 
 	// todo: kick off new go-routine for each chain
@@ -46,7 +47,7 @@ func (app *IndexerApp) IndexTransfers() error {
 
 		// iterate tokens array and get the transfers for each token
 		for _, token := range tokens {
-			// determine if the token has been synced to a differnt block
+			// determine if the token has been synced to a different block
 			startBlock := token.GenesisBlock
 			if token.Height > startBlock {
 				startBlock = token.Height
@@ -81,7 +82,11 @@ func (app *IndexerApp) indexTransfersForToken(startBlock uint64, endBlock uint64
 	}
 	currentBlock := startBlock
 	retryCount := 20
+	i := 0
 	for currentBlock < endBlock {
+		if i%100 == 0 {
+			log.Infof("process block %d", currentBlock)
+		}
 		end := currentBlock + batchSize
 		filterOpts := bind.FilterOpts{
 			Start:   currentBlock,
@@ -90,7 +95,7 @@ func (app *IndexerApp) indexTransfersForToken(startBlock uint64, endBlock uint64
 		}
 		iter, err := token.FilterTransfer(&filterOpts, nil, nil)
 		if err != nil {
-			log.Errorf("failed to get transfer events for block %+v retrying", err)
+			log.Errorf("failed to get transfer events for block %d, retrying: %+v", currentBlock, err)
 			retryCount--
 			if retryCount < 0 {
 				return errors.New("GetAllTransfers failed with 0 retries")
@@ -128,6 +133,7 @@ func (app *IndexerApp) indexTransfersForToken(startBlock uint64, endBlock uint64
 			return err
 		}
 		log.Debugf("%s: updated transfers for blocks through %d with %d transfers", name, end, len(transfers))
+		time.Sleep(200 * time.Millisecond)
 	}
 	return nil
 }

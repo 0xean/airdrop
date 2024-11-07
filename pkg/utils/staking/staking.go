@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/ArkeoNetwork/directory/pkg/logging"
+	"github.com/ArkeoNetwork/common/logging"
 
 	"github.com/ArkeoNetwork/airdrop/contracts/stakingrewards"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"

@@ -1,0 +1,92 @@
+[
+  {
+    "osmo10fnanvexfvjttvyyelmyfhqxv955uj07ah9ju5": {
+      "address": "osmo10fnanvexfvjttvyyelmyfhqxv955uj07ah9ju5",
+      "liquid_balance": [
+        {
+          "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
+          "amount": "121"
+        },
+        {
+          "denom": "ibc/41999DF04D9441DAC0DF5D8291DF4333FBCBA810FFD63FDCE34FDF41EF37B6F7",
+          "amount": "162"
+        },
+        {
+          "denom": "ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED",
+          "amount": "7350"
+        },
+        {
+          "denom": "ibc/49C2B2C444B7C5F0066657A4DBF19D676E0D185FF721CFD3E14FA253BCB9BC04",
+          "amount": "377011"
+        },
+        {
+          "denom": "ibc/AA1C80225BCA7B32ED1FC6ABF8B8E899BEB48ECDB4B417FD69873C6D715F97E7",
+          "amount": "267"
+        },
+        {
+          "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
+          "amount": "25000000"
+        },
+        {
+          "denom": "uosmo",
+          "amount": "1791877"
+        }
+      ],
+      "staked": "3006000",
+      "unbonding_stake": "0",
+      "bonded": [
+        {
+          "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+          "amount": "641941"
+        },
+        {
+          "denom": "ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED",
+          "amount": "811003"
+        },
+        {
+          "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
+          "amount": "45931117"
+        },
+        {
+          "denom": "uosmo",
+          "amount": "8091938"
+        }
+      ],
+      "bonded_by_select_pools": {},
+      "total_balances": [
+        {
+          "denom": "ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0",
+          "amount": "121"
+        },
+        {
+          "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
+          "amount": "641941"
+        },
+        {
+          "denom": "ibc/41999DF04D9441DAC0DF5D8291DF4333FBCBA810FFD63FDCE34FDF41EF37B6F7",
+          "amount": "162"
+        },
+        {
+          "denom": "ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED",
+          "amount": "818353"
+        },
+        {
+          "denom": "ibc/49C2B2C444B7C5F0066657A4DBF19D676E0D185FF721CFD3E14FA253BCB9BC04",
+          "amount": "377011"
+        },
+        {
+          "denom": "ibc/AA1C80225BCA7B32ED1FC6ABF8B8E899BEB48ECDB4B417FD69873C6D715F97E7",
+          "amount": "267"
+        },
+        {
+          "denom": "ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC",
+          "amount": "70931117"
+        },
+        {
+          "denom": "uosmo",
+          "amount": "12889815"
+        }
+      ]
+    }
+  }
+]

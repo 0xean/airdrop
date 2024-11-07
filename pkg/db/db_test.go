@@ -3,17 +3,19 @@ package db
 import (
 	"context"
 	"testing"
+
+	"github.com/ArkeoNetwork/common/utils"
 )
 
-var config = DBConfig{
-	Host:         "localhost",
-	Port:         5432,
-	User:         "arkeo",
-	Pass:         "arkeo123",
-	DBName:       "arkeo_airdrop",
-	PoolMaxConns: 2,
-	PoolMinConns: 1,
-	SSLMode:      "prefer",
+var config = utils.DBConfig{
+	DBHost:         "localhost",
+	DBPort:         5432,
+	DBUser:         "arkeo",
+	DBPass:         "arkeo123",
+	DBName:         "arkeo_airdrop",
+	DBPoolMaxConns: 2,
+	DBPoolMinConns: 1,
+	DBSSLMode:      "prefer",
 }
 
 func TestNew(t *testing.T) {

@@ -79,6 +79,7 @@ func (app *IndexerApp) IndexHedgeyEvents() error {
 			return errors.Wrap(err, "error indexing hedgey contract events")
 		}
 	}
+	log.Infof("Finished Indexing Hedgey Events")
 	return nil
 }
 

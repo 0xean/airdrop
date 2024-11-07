@@ -4,7 +4,7 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/ArkeoNetwork/directory/pkg/logging"
+	"github.com/ArkeoNetwork/common/logging"
 
 	"github.com/ArkeoNetwork/airdrop/contracts/erc20"
 

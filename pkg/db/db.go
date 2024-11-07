@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ArkeoNetwork/directory/pkg/logging"
+	"github.com/ArkeoNetwork/common/logging"
+	"github.com/ArkeoNetwork/common/utils"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/pkg/errors"
 )
@@ -39,19 +40,20 @@ func (d *AirdropDB) getConnection() (*pgxpool.Conn, error) {
 	return d.pool.Acquire(context.Background())
 }
 
-func New(config DBConfig) (*AirdropDB, error) {
+func New(config utils.DBConfig) (*AirdropDB, error) {
 	connStrTemplate := "postgres://%s:%s@%s:%d/%s?pool_max_conns=%d&pool_min_conns=%d&sslmode=%s"
-	url := fmt.Sprintf(connStrTemplate, config.User, config.Pass, config.Host, config.Port, config.DBName, config.PoolMaxConns, config.PoolMinConns, config.SSLMode)
+	url := fmt.Sprintf(connStrTemplate, config.DBUser, config.DBPass, config.DBHost, config.DBPort, config.DBName, config.DBPoolMaxConns, config.DBPoolMinConns, config.DBSSLMode)
 	poolConfig, err := pgxpool.ParseConfig(url)
 	if err != nil {
 		return nil, errors.Wrapf(err, "error parsing url to config from: \"%s\"", url)
 	}
 
+	log.Infof("creating postgres pool for user %s db %s on %s:%d", config.DBUser, config.DBName, config.DBHost, config.DBPort)
 	pool, err := pgxpool.ConnectConfig(context.Background(), poolConfig)
 	if err != nil {
 		return nil, errors.Wrapf(err, "error connecting to db")
 	}
 
-	log.Infof("connected pool for db %s on %s:%d", config.DBName, config.Host, config.Port)
+	log.Infof("connected pool for db %s on %s:%d", config.DBName, config.DBHost, config.DBPort)
 	return &AirdropDB{pool}, nil
 }

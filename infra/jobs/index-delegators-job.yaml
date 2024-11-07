@@ -1,0 +1,56 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: foundation
+  name: index-delegators
+spec:
+  template:
+    spec:
+      containers:
+      - name: airdroputils
+        image: ghcr.io/arkeonetwork/airdroputils:dev
+        imagePullPolicy: Always
+        volumeMounts:
+          - name: data
+            mountPath: /root/data
+        command:
+          - arkeodrop
+          - index-cosmos
+          - delegators
+          - GAIA
+          - -e
+          - ""
+        env:
+          - name: LOG_LEVEL
+            value: "INFO"
+          - name: DB_PORT
+            value: "5432"
+          - name: DB_NAME
+            value: "postgres"
+          - name: DB_POOL_MAX_CONNS
+            value: "16"
+          - name: DB_POOL_MIN_CONNS
+            value: "1"
+          - name: DB_SSL_MODE
+            value: "prefer"
+          - name: DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: airdropdbsec
+                key: host
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: airdropdbsec
+                key: user
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: airdropdbsec
+                key: password
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: airdroputils-data-pvc
+      restartPolicy: OnFailure
+  backoffLimit: 4

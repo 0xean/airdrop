@@ -2,6 +2,7 @@ package indexer
 
 import (
 	"context"
+	"time"
 
 	"github.com/ArkeoNetwork/airdrop/contracts/erc20"
 	"github.com/ArkeoNetwork/airdrop/contracts/stakingrewards"
@@ -13,10 +14,11 @@ import (
 	"github.com/pkg/errors"
 )
 
-func (app *IndexerApp) IndexStakingRewardsEvents() error {
+func (app *IndexerApp) IndexStakingRewardsEvents(contractName string) error {
 	// get all staking contracts
-	stakingContracts, err := app.db.FindStakingContractsByName("stakingrewards")
+	stakingContracts, err := app.db.FindStakingContractsByName(contractName)
 	if err != nil {
+		log.Info("error finding all staking contracts")
 		return errors.Wrap(err, "error finding all staking contracts")
 	}
 	// for each staking contract
@@ -168,6 +170,7 @@ func (app *IndexerApp) indexStakingRewardContractEvents(
 			return err
 		}
 		log.Debugf("Updated staking events for blocks through %d with %d events", end, len(stakingEvents))
+		time.Sleep(200 * time.Millisecond)
 	}
 	return nil
 }
